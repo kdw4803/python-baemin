@@ -1,0 +1,7 @@
+db.sqlite3
+.idea/coding-for-office-workers.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
+*.pyc
