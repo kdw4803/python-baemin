@@ -3,6 +3,15 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Partner(models.Model):
+    KOREAN = "ko"
+    JAPANESE = "jp"
+    CHINESE = "cn"
+    CATEGORY_CHOICES = (
+        (KOREAN, "korean"),
+        (JAPANESE, "japanese"),
+        (CHINESE, "chinese")
+    )
+
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     name = models.CharField(
         max_length=50,
@@ -19,7 +28,11 @@ class Partner(models.Model):
     description = models.TextField(
         verbose_name="상세 소개"
     )
-
+    category = models.CharField(
+        max_length=2,
+        choices=CATEGORY_CHOICES,
+        default=KOREAN
+    )
     def __str__(self):
         return self.name
 

@@ -119,23 +119,32 @@ def menu_edit(request,menu_id):
     menu = Menu.objects.get(id=menu_id)
 
     if request.method == "GET":
-        form = MenuForm(instance=menu)
-        ctx.update({"form": form})
+        ctx.update({"menu": menu})
+        # form = MenuForm(instance=menu)
+        # ctx.update({"form": form})
     elif request.method == "POST":
-        form = MenuForm(
-            request.POST,
-            request.FILES,
-            instance=menu
-        )
-        if form.is_valid():
-            menu = form.save(commit=False)
-            menu.partner = request.user.partner
-            menu.save()
-            return redirect("/partner/menu/")
-        else:
-            ctx.update({"form": form})
+        # form = MenuForm(
+        #     request.POST,
+        #     request.FILES,
+        #     instance=menu
+        # )
+        # if form.is_valid():
+            # menu = form.save(commit=False)
+            # menu.partner = request.user.partner
+            # menu.save()
 
-    return render(request, "menu_add.html", ctx)
+        if request.FILES:
+            menu.image = request.FILES["image"]
+
+        menu.name = request.POST.get("name")
+        menu.price = request.POST.get("price")
+        menu.save()
+
+        return redirect("/partner/menu/")
+        # else:
+        #     ctx.update({"menu": menu})
+
+    return render(request, "menu_edit.html", ctx)
 
 def menu_delete(request,menu_id):
     menu = Menu.objects.get(id=menu_id)
