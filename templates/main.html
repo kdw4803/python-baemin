@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block body %}
+    {% include "navbar.html" %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="row">
+                    {% for partner in partner_list %}
+                        <div class="col-sm-4">
+                            <h4>{{partner.name}}</h4>
+                            <div>{{partner.address}}</div>
+                        </div>
+                    {% endfor %}
+                    <div class="col-sm-4">
+                        <h4>두번째 이름</h4>
+                        <div>두번째 주소</div>
+                    </div>
+                    <div class="col-sm-4">
+                        <h4>세번째 이름</h4>
+                        <div>세번째 주소</div>
+                    </div>
+                    <div class="col-sm-4">
+                        <h4>네번째 이름</h4>
+                        <div>네번째 주소</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
